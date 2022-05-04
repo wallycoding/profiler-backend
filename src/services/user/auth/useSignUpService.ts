@@ -4,6 +4,7 @@ import type { Request, Response } from "express";
 import database from "../../../database";
 
 interface AuthSignUpAttributes {
+  photo: string;
   full_name: string;
   email: string;
   password: string;
@@ -11,11 +12,12 @@ interface AuthSignUpAttributes {
 }
 
 const useSignUpService = async (req: Request, res: Response) => {
-  const { full_name, email, password } = req.body as AuthSignUpAttributes;
+  const { photo, full_name, email, password } =
+    req.body as AuthSignUpAttributes;
 
   const user = await database.user.create({
     data: {
-      photo: null,
+      photo,
       full_name,
       email,
       password: bcrypt.hashSync(password, bcrypt.genSaltSync()),

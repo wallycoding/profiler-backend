@@ -15,7 +15,6 @@ const useSignInController = async (
   next: NextFunction
 ) => {
   try {
-    console.log(req.headers);
     const bb = busboy({ headers: req.headers });
 
     bb.addListener("error", (error: any) => {

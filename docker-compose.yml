@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    command: npm run dev
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - 5000:3000
+      - 5555:5555
+    volumes:
+      - .:/application/profiler
+  db:
+    container_name: postgres
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local

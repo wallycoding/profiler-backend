@@ -1,0 +1,51 @@
+{
+  "name": "profiler-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node --transpile-only src/main.ts\"",
+    "build": "tsc",
+    "use:env": "cp ./.env.example ./.env",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
+    "docker:restart": "docker-compose down && docker-compose up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wallycoding/profiler-backend.git"
+  },
+  "keywords": [
+    "back-end",
+    "postgres",
+    "js",
+    "ts"
+  ],
+  "author": "wallycoding",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wallycoding/profiler-backend/issues"
+  },
+  "homepage": "https://github.com/wallycoding/profiler-backend#readme",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/busboy": "^1.5.0",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
+    "bcrypt": "^5.0.1",
+    "nodemon": "^2.0.15",
+    "prisma": "^3.12.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.12.0",
+    "busboy": "^1.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "magic-env": "^1.1.6",
+    "node-input-validator": "^4.5.0"
+  }
+}

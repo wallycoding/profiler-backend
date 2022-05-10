@@ -13,7 +13,7 @@ model User {
   email     String @unique
   password  String
 
-  profile Profile[]
+  profile Profile?
 
   @@map("users")
 }
@@ -24,7 +24,7 @@ model Profile {
   photo       String?
   description String?
 
-  user_id String
+  user_id String @unique
   user    User   @relation(fields: [user_id], references: [id])
 
   @@map("profiles")

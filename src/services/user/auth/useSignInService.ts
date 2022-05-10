@@ -17,9 +17,9 @@ const useSignInService = async (req: Request, res: Response) => {
       id: user.id,
       photo: user.photo,
     },
-    process.env.JWT_SECRET_KEY || "",
+    process.env.JWT_SECRET_KEY as string,
     {
-      expiresIn: "1m",
+      expiresIn: process.env.JWT_TOKEN_EXPIRES,
     }
   );
   res.json({ token: `Bearer ${payload}` });

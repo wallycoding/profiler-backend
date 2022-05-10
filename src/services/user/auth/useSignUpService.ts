@@ -17,21 +17,24 @@ const useSignUpService = async (req: Request, res: Response) => {
 
   const user = await database.user.create({
     data: {
-      photo,
       full_name,
       email,
       password: bcrypt.hashSync(password, bcrypt.genSaltSync()),
+      profile: {
+        create: {
+          photo,
+        },
+      },
     },
   });
 
   const payload = jwt.sign(
     {
       id: user.id,
-      photo: user.photo,
     },
-    process.env.JWT_SECRET_KEY || "",
+    process.env.JWT_SECRET_KEY as string,
     {
-      expiresIn: "1m",
+      expiresIn: process.env.JWT_TOKEN_EXPIRES,
     }
   );
 

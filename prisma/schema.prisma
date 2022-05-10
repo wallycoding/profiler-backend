@@ -8,11 +8,24 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  photo    String?
+  id        String @id @default(uuid())
   full_name String
-  email    String @unique
-  password String
+  email     String @unique
+  password  String
+
+  profile Profile[]
 
   @@map("users")
+}
+
+model Profile {
+
+  id          String  @id @default(uuid())
+  photo       String?
+  description String?
+
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  @@map("profiles")
 }

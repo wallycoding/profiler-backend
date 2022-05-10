@@ -4,17 +4,22 @@ import database from "../../../database";
 const usePublicProfileService = async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const user = await database.user.findUnique({
+  const user = await database.profile.findUnique({
     where: {
       id,
     },
     select: {
-      id: true,
+      user: {
+        select: {
+          id: true,
+          full_name: true,
+        },
+      },
       photo: true,
-      full_name: true,
+      description: true,
     },
   });
-
+  
   res.json(user);
 };
 

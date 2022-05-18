@@ -1,5 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import database from "../../../database";
 
 const useVerifyAuthController = async (
   req: Request,
@@ -11,8 +12,15 @@ const useVerifyAuthController = async (
     if (!authorization) throw Error("invalid token");
     const token = authorization.replace(/^bearer\s/i, "");
     const payload = jwt.verify(token, process.env.JWT_SECRET_KEY as string);
+    const userID = (payload as { id: string }).id;
+    const user = await database.user.findUnique({
+      where: {
+        id: userID,
+      },
+    });
+    if (!user) throw Error("User not found");
     req.props = {
-      user: payload,
+      user,
     };
     next(null);
   } catch {

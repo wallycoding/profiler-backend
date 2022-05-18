@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node --transpile-only src/main.ts\"",
+    "auto:config": "npm run use:mount_dirs && npm run use:env",
     "build": "tsc",
     "use:env": "cp ./.env.example ./.env",
+    "use:mount_dirs": "mkdir images && mkdir images/user",
     "docker:up": "docker-compose up",
     "docker:down": "docker-compose down",
     "docker:restart": "docker-compose down && docker-compose up"
@@ -45,7 +47,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
-    "magic-env": "^1.1.6",
+    "magic-env": "^1.2.7",
     "node-input-validator": "^4.5.0"
   }
 }

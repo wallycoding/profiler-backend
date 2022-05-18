@@ -2,11 +2,17 @@ import useSignInController from "./user/auth/useSignInController";
 import useSignUpController from "./user/auth/useSignUpController";
 import useVerifyAuthController from "./user/auth/useVerifyAuthController";
 
-import useVerifyProfileByID from "./user/profile/useVerifyProfileByID";
+import useVerifyProfileByIDController from "./user/profile/useVerifyProfileByIDController";
+import useFollowProfileController from "./user/profile/useFollowProfileController";
+import useUnFollowProfileController from "./user/profile/useUnFollowProfileController";
 
 export const useAuthController = {
   useSignInController,
   useSignUpController,
   useVerifyAuthController,
 };
-export const useProfileController = { useVerifyProfileByID };
+export const useProfileController = {
+  useVerifyProfileByIDController,
+  useFollowProfileController,
+  useUnFollowProfileController,
+};

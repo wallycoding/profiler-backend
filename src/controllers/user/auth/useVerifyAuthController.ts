@@ -17,6 +17,9 @@ const useVerifyAuthController = async (
       where: {
         id: userID,
       },
+      select: {
+        profile: true,
+      },
     });
     if (!user) throw Error("User not found");
     req.props = {

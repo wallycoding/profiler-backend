@@ -10,4 +10,10 @@ router.get(
   useProfileService.usePublicProfileService
 );
 
+router.get(
+  "/user/profile/",
+  useAuthController.useVerifyAuthController,
+  useProfileService.useMyProfileService
+);
+
 export default router;

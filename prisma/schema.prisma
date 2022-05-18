@@ -27,5 +27,20 @@ model Profile {
   user_id String @unique
   user    User   @relation(fields: [user_id], references: [id])
 
+  following Follow[] @relation("following")
+  followers Follow[] @relation("follow")
+
   @@map("profiles")
+}
+
+model Follow {
+
+  following_id String
+  following    Profile @relation("following", fields: [following_id], references: [id])
+  
+  follow_id    String
+  follow       Profile @relation("follow", fields: [follow_id], references: [id])
+
+  @@id([following_id, follow_id])
+  @@map("followers")
 }

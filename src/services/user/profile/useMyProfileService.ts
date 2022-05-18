@@ -1,8 +1,12 @@
 import type { Request, Response } from "express";
 import database from "../../../database";
 
-const usePublicProfileService = async (req: Request, res: Response) => {
-  const { id } = req.params;
+const useMyProfileService = async (req: Request, res: Response) => {
+  const {
+    user: {
+      profile: { id },
+    },
+  } = req.props;
 
   const user = await database.profile.findUnique({
     where: {
@@ -26,4 +30,4 @@ const usePublicProfileService = async (req: Request, res: Response) => {
   res.json(user);
 };
 
-export default usePublicProfileService;
+export default useMyProfileService;

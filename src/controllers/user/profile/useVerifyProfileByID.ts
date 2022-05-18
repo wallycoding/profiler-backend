@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import database from "../../../database";
 
-const usePublicProfileController = async (
+const useVerifyProfileByID = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -32,4 +32,4 @@ const usePublicProfileController = async (
   }
 };
 
-export default usePublicProfileController;
+export default useVerifyProfileByID;
